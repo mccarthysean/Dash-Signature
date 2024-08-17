@@ -41,7 +41,7 @@ Clone this code and open it in a Development container in VS Code, which will in
     ```
 3. Build the Dash custom component
     ```
-    npm run build
+    $ npm run build
     ```
 
 ### Write your component code in `src/lib/components/Signature.react.js`.
@@ -81,7 +81,7 @@ Clone this code and open it in a Development container in VS Code, which will in
 
 3. Test your tarball by copying it into a new environment and installing it locally:
     ```
-    $ pip install dash_signature-0.0.1.tar.gz
+    $ pip install dash_signature-0.1.0.tar.gz
     ```
 
 4. If it works, then you can publish the component to NPM and PyPI:
