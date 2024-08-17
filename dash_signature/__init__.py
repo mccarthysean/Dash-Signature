@@ -7,8 +7,8 @@ import sys as _sys
 import dash as _dash
 
 # noinspection PyUnresolvedReferences
-from ._imports_ import *
-from ._imports_ import __all__
+# from dash_signature._imports_ import Signature, Test
+from dash_signature._imports_ import __all__
 
 if not hasattr(_dash, "__plotly_dash") and not hasattr(_dash, "development"):
     print(

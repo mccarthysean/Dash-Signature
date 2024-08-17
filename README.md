@@ -29,26 +29,19 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ### Install dependencies
 
-If you have selected install_dependencies during the prompt, you can skip this part.
+Clone this code and open it in a Development container in VS Code, which will install Python 3, NodeJS, NPM, and Yarn.
 
-1. Install npm packages
+1. Install npm packages with Yarn or NPM
     ```
-    $ npm install
+    $ yarn install || npm install
     ```
-2. Create a virtual env and activate.
+2. Install Poetry packages for Python
     ```
-    $ virtualenv venv
-    $ . venv/bin/activate
+    $ poetry install
     ```
-    _Note: venv\Scripts\activate for windows_
-
-3. Install python packages required to build components.
+3. Build the Dash custom component
     ```
-    $ pip install -r requirements.txt
-    ```
-4. Install the python packages for testing (optional)
-    ```
-    $ pip install -r tests/requirements.txt
+    npm run build
     ```
 
 ### Write your component code in `src/lib/components/Signature.react.js`.

@@ -1,6 +1,6 @@
 {
   "name": "dash_signature",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "None",
   "main": "build/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "build": "npm run clean && npm run build:js && npm run build:backends",
     "bundle": "npm run build && python setup.py sdist bdist_wheel",
     "build:activated": "npm run build:js && npm run build:backends-activated",
-    "rebuild": "npm run build && pip install -r requirements.txt && python usage.py"
+    "rebuild": "npm run build && poetry install && python usage.py"
   },
   "author": "Coulton <cjrfraser@gmail.com>",
   "license": "",
