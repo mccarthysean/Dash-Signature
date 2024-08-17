@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  signature_dev:
+    build:
+      # context: where should docker compose look for the Dockerfile?
+      context: ..
+      dockerfile: Dockerfile.dev
+      args:
+        secret=id: secret_envs,src=.env
+        # ERROR: OpenBLAS blas_thread_init if you upgrade from Debian bullseye to bookworm...
+        INSTALL_PYTHON_VERSION: 3.11.8-slim-bullseye
+    env_file:
+      - .env
+    environment:
+      DOCKER_BUILDKIT: 1
+      COMPOSE_DOCKER_CLI_BUILD: 1
+      BUILDKIT_INLINE_CACHE: 1
+    volumes:
+      - ..:/workspace:cached
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity

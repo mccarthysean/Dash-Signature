@@ -1,0 +1,81 @@
+{
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/app",
+    "/usr/local/lib/python3.11/site-packages",
+  ],
+  "files.eol": "\n",
+  "python.languageServer": "Pylance",
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "app"
+  ],
+  "editor.defaultFormatter": "charliermarsh.ruff",
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
+  "ruff.nativeServer": "on",
+  "ruff.organizeImports": true,
+  "ruff.configuration": "../pyproject.toml",
+  "ruff.trace.server": "messages",
+  "notebook.formatOnSave.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll": "explicit",
+    "notebook.source.organizeImports": "explicit"
+  },
+  "[python]": {
+    // "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+  },
+  "[jinja-html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+  },
+  "[javascript]": {
+    // "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+  },
+  "editor.detectIndentation": false,
+  "emmet.includeLanguages": {
+    "jinja-html": "html"
+  },
+  "files.associations": {
+    "*.html": "jinja-html"
+  },
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/app",
+    "/usr/local/lib/python3.11/site-packages"
+  ],
+  "[sql]": {
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  }
+}

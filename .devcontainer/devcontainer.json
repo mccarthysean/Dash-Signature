@@ -1,0 +1,36 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
+// https://github.com/microsoft/vscode-dev-containers/tree/master/containers/python-3-miniconda
+{
+  "name": "signature_dev",
+  "dockerComposeFile": "docker-compose.dev.yml",
+  "service": "signature_dev",
+  // The optional 'workspaceFolder' property is the path VS Code should open by default when
+  // connected. This is typically a file mount in .devcontainer/docker-compose.yml
+  // This way if you click "Reopen in container", it knows which workspace to use.
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "remote.extensionKind": {
+          "ms-azuretools.vscode-docker": "workspace"
+        },
+        "git.enableSmartCommit": true,
+        "git.autofetch": true
+      },
+      "extensions": [
+        "ms-python.python",
+        "GitHub.copilot",
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "samuelcolvin.jinjahtml",
+        "ms-toolsai.jupyter",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "oderwat.indent-rainbow",
+        "tamasfe.even-better-toml",
+        "esbenp.prettier-vscode",
+        "PWABuilder.pwa-studio"
+      ]
+    }
+  }
+}

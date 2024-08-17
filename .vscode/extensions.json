@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "samuelcolvin.jinjahtml",
+    "github.copilot",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+    "oderwat.indent-rainbow",
+    "tamasfe.even-better-toml",
+    "esbenp.prettier-vscode",
+    "pwabuilder.pwa-studio"
+  ]
+}
