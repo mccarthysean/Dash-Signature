@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import PropTypes from 'prop-types';
 import SignaturePad from 'signature_pad';
@@ -22,11 +22,21 @@ import {TrashIcon} from '../fragments/TrashIcon.react';
  *
  * Function to check if a data URI is a valid image.
  */
+
+// Sean trying to add basic stuff...
+// class Signature2 extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             value: 'default',
+//         };
+//     }
+// }
+
 function isValidImageDataUri(dataUri) {
     // Regular expression to match a data URI for an image
     // const regex = /^data:image\/(svg\+xml);base64,[a-zA-Z0-9+/=]+$/;
     const regex = /^data:image\/(png|jpeg|svg\+xml);base64,[a-zA-Z0-9+/=]+$/;
-
 
     // Check if the data URI matches the pattern
     if (!regex.test(dataUri)) {

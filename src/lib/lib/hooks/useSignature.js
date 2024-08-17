@@ -1,6 +1,6 @@
 import React from "react"
 
-export const useSignatute(ref){
+export const useSignature(ref){
   const resizeCanvas = React.useCallback((signatureRef, signaturePadRef) => {
     const canvas = signatureRef.current
     const ratio = Math.max(window.devicePixelRatio || 1, 1);

@@ -1,22 +1,21 @@
 /* eslint no-magic-numbers: 0 */
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-import { Signature } from '../lib';
+import {Signature} from '../lib';
+import {TextInput} from '../lib';
 
-const App = () => {
+class App extends Component {
+    constructor() {
+        super(props);
 
-  const [state, setState] = useState({ value: '' });
-  const setProps = (newProps) => {
-    setState(newProps);
-  };
+        this.state = {
+            value: 'dash',
+        };
+    }
 
-  return (
-    <Signature
-      setProps={setProps}
-      {...state}
-    />
-  )
-};
-
+    render() {
+        return <TextInput label={'Dash'} value={this.state.value} />;
+    }
+}
 
 export default App;
