@@ -12,9 +12,9 @@ update the dependencies of myijack in pyproject.toml to have this:
 dash_ijack_components = { path = "/workspace/dash_ijack_components", develop = true }
 
 
-# Dash Ijack Components
+# Dash IJACK Components
 
-Dash Ijack Components is a Dash component library.
+Dash IJACK Components is a Dash component library.
 
 None
 
