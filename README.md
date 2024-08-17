@@ -12,9 +12,9 @@ update the dependencies of myijack in pyproject.toml to have this:
 dash_signature = { path = "/workspace/dash_signature", develop = true }
 
 
-# Dash IJACK Components
+# Dash Signature
 
-Dash IJACK Components is a Dash component library.
+Dash Signature is a Dash component library.
 
 None
 
