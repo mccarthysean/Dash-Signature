@@ -1,5 +1,5 @@
 
-module DashIjackComponents
+module DashSignature
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
