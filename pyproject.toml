@@ -1,8 +1,8 @@
 
-name = "DashIjackComponents"
+name = "Dash Signature"
 uuid = "1b08a953-4be3-4667-9a23-8ac016b1ccf3"
 authors = ["Coulton <cjrfraser@gmail.com>"]
-version = "0.0.1"
+version = "0.0.2"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"

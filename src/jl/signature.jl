@@ -16,6 +16,6 @@ Setting to true will update the value.
 function signature(; kwargs...)
         available_props = Symbol[:id, :save, :value]
         wild_props = Symbol[]
-        return Component("signature", "Signature", "dash_ijack_components", available_props, wild_props; kwargs...)
+        return Component("signature", "Signature", "dash_signature", available_props, wild_props; kwargs...)
 end
 

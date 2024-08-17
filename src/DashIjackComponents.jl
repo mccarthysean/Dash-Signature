@@ -10,19 +10,19 @@ include("jl/signature.jl")
 function __init__()
     DashBase.register_package(
         DashBase.ResourcePkg(
-            "dash_ijack_components",
+            "dash_signature",
             resources_path,
             version = version,
             [
                 DashBase.Resource(
-    relative_package_path = "dash_ijack_components.min.js",
+    relative_package_path = "dash_signature.min.js",
     external_url = nothing,
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
-    relative_package_path = "dash_ijack_components.min.js.map",
+    relative_package_path = "dash_signature.min.js.map",
     external_url = nothing,
     dynamic = true,
     async = nothing,

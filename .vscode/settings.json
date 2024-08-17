@@ -1,6 +1,6 @@
 {
   "python.autoComplete.extraPaths": [
-    "${workspaceFolder}/app",
+    "${workspaceFolder}/dash_signature",
     "/usr/local/lib/python3.11/site-packages",
   ],
   "files.eol": "\n",
@@ -72,7 +72,7 @@
     "*.html": "jinja-html"
   },
   "python.analysis.extraPaths": [
-    "${workspaceFolder}/app",
+    "${workspaceFolder}/dash_signature",
     "/usr/local/lib/python3.11/site-packages"
   ],
   "[sql]": {

@@ -67,11 +67,11 @@ _js_dist.extend(
 _js_dist.extend(
     [
         {
-            "relative_package_path": "dash_ijack_components.min.js",
+            "relative_package_path": "dash_signature.min.js",
             "namespace": package_name,
         },
         {
-            "relative_package_path": "dash_ijack_components.min.js.map",
+            "relative_package_path": "dash_signature.min.js.map",
             "namespace": package_name,
             "dynamic": True,
         },

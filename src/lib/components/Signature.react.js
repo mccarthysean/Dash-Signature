@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import PropTypes from 'prop-types';
 import SignaturePad from 'signature_pad'
 //output.css is the tailwind css file that is generated from the tailwind.config.js
-//This file is generated using the command `npm run css` while in the dash_ijack_components directory
+//This file is generated using the command `npm run css` while in the dash_signature directory
 //some classes conflict with the existing bootstrap classes. To avoid conflicts, the conflicting classes should be renamed
 // Conflicting classes in this file are currently just `border` which is instead used as `border-[1px]` to avoid conflicts
 import '../css/output.css'

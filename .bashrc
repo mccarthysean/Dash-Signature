@@ -149,7 +149,7 @@ alias dc="docker compose"
 # . $VIRTUAL_ENV/bin/activate
 
 # Add project directory to PYTHONPATH so Python can find my files
-# export PYTHONPATH=$PATH:/home/user/workspace/app
+# export PYTHONPATH=$PATH:/home/user/workspace/dash_signature
 
 # For NodeJS modules
 # export PATH=/home/user/workspace/assets/node_modules/.bin:$PATH
