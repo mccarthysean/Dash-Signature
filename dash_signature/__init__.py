@@ -7,7 +7,7 @@ import sys as _sys
 import dash as _dash
 
 # noinspection PyUnresolvedReferences
-# from dash_signature._imports_ import Signature, Test
+from dash_signature._imports_ import *  # noqa: F403
 from dash_signature._imports_ import __all__
 
 if not hasattr(_dash, "__plotly_dash") and not hasattr(_dash, "development"):
