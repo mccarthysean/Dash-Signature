@@ -12,9 +12,9 @@ update the dependencies of myijack in pyproject.toml to have this:
 dash_signature = { path = "/workspace/dash_signature", develop = true }
 
 
-# Dash Signature
+# Dash-Signature
 
-Dash Signature is a Dash component library.
+Dash-Signature is a Dash element for adding a signature field to a form.
 
 None
 
