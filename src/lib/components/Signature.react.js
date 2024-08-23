@@ -97,6 +97,7 @@ function scaleDataFrom(data, canvas, height, width) {
  * @property {() => void} handleRedo - Function to handle redo action.
  * @property {() => void} handleClear - Function to handle clear action.
  * @property {() => void} handleReset - Function to handle reset action.
+ * @property {() => void} handleSave - Function to handle save action.
  * @property {number | null} oldHeight - Previous height of the canvas.
  * @property {number | null} oldWidth - Previous width of the canvas.
  * @property {React.Dispatch<React.SetStateAction<number | null>>} setOldHeight - Setter of oldHeight.
@@ -127,6 +128,7 @@ function SignatureCanvas(
         handleRedo,
         handleClear,
         handleReset,
+        handleSave,
         disabled,
         handleDisable,
         oldHeight,
@@ -267,6 +269,7 @@ function SignatureCanvas(
             console.log({data});
             setSignatureValue(data);
             setRedos([]);
+            handleSave()
         }
     }, [value]);
     const size = useWindowSize();
@@ -596,6 +599,7 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
                     handleClear={handleClear}
                     handleDisable={handleDisable}
                     handleReset={handleReset}
+                    handleSave={handleSave}
                     oldHeight={oldHeight}
                     oldWidth={oldWidth}
                     setOldHeight={setOldHeight}
