@@ -1,6 +1,6 @@
-from dash import Dash, Input, Output, ctx, html
+from dash import Dash, Input, Output, html
 
-from dash_signature import Signature, Test
+from dash_signature import Signature  # , Test
 
 app = Dash(__name__)
 value_store = ""
@@ -55,25 +55,25 @@ def save_signature_value(n_clicks):
     return False
 
 
-@app.callback(
-    Output("input_test", "value"),
-    [
-        Input("clear-button", "n_clicks"),
-    ],
-)
-def submit_signature_value(clicks):
-    if clicks is not None and clicks > 0:
-        return ""
+# @app.callback(
+#     Output("input_test", "value"),
+#     [
+#         Input("clear-button", "n_clicks"),
+#     ],
+# )
+# def submit_signature_value(clicks):
+#     if clicks is not None and clicks > 0:
+#         return ""
 
 
-@app.callback(
-    Output("output", "children"),
-    [Input("input_test", "value"), Input("store-button", "n_clicks")],
-)
-def update_output(value, clicks):
-    context = ctx.triggered_id if not None else "no trigger"
-    if clicks is not None and clicks > 0 and context == "store-button":
-        return value
+# @app.callback(
+#     Output("output", "children"),
+#     [Input("input_test", "value"), Input("store-button", "n_clicks")],
+# )
+# def update_output(value, clicks):
+#     context = ctx.triggered_id if not None else "no trigger"
+#     if clicks is not None and clicks > 0 and context == "store-button":
+#         return value
 
 
 if __name__ == "__main__":

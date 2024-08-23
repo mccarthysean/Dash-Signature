@@ -322,7 +322,7 @@ function SignatureCanvas(
         }
     }, [disabled]);
     return (
-        <div className="flex flex-col relative aspect-[5/2]">
+        <div className="tw-flex tw-flex-col tw-relative tw-aspect-[5/2]">
             {/* <button type='button' title='Maximize' className={classNames('active:fill-blue-600 active:bg-grey-400/50 hover:bg-gray-300/50 absolute flex top-0 p-1 rounded z-20 bg-white right-0 m-2')}
         onClick={
           () => {
@@ -332,17 +332,17 @@ function SignatureCanvas(
         }>
         <ArrowSquareIcon className={classNames('fill-inherit transition', expanded && 'rotate-180')} />
       </button> */}
-            <div className="absolute z-20 flex bottom-0 right-0 p-1 justify-end gap-2">
+            <div className="tw-absolute tw-z-20 tw-flex tw-bottom-0 tw-right-0 tw-p-1 tw-justify-end tw-gap-2">
                 {disabled ? (
                     <button
                         type="button"
                         title="Edit"
                         className={classNames(
-                            'active:fill-blue-600 active:bg-grey-400/50 hover:bg-gray-300/50 p-1 rounded z-20 bg-white'
+                            'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white'
                         )}
                         onClick={() => handleDisable(false)}
                     >
-                        <EditIcon className="fill-inherit p-[1px]" />
+                        <EditIcon className="tw-fill-inherit tw-p-[1px]" />
                     </button>
                 ) : (
                     <>
@@ -351,61 +351,61 @@ function SignatureCanvas(
                             title="Undo"
                             // disabled={redos.length === 0 || typeof value === 'string'}
                             className={classNames(
-                                'active:fill-blue-600 active:bg-grey-400/50 hover:bg-gray-300/50 p-1 rounded z-20 bg-white'
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white'
                             )}
                             onClick={() => handleUndo()}
                         >
-                            <ChevronIcon className="fill-inherit rotate-180 p-[1px]" />
+                            <ChevronIcon className="tw-fill-inherit tw-rotate-180 tw-p-[1px]" />
                         </button>
                         <button
                             type="button"
                             title="Redo"
                             className={classNames(
-                                'active:fill-blue-600 active:bg-grey-400/50 hover:bg-gray-300/50 p-1 rounded z-20 bg-white',
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white',
                                 redos.length === 0 &&
-                                    'fill-gray-300  disabled:bg-transparent disabled:text-gray-300 active:fill-gray-300 active:bg-transparent active:text-gray-300'
+                                    'tw-fill-gray-300  disabled:tw-bg-transparent disabled:tw-text-gray-300 active:tw-fill-gray-300 active:tw-bg-transparent active:tw-text-gray-300'
                             )}
                             disabled={
                                 redos.length === 0 || typeof value === 'string'
                             }
                             onClick={() => handleRedo()}
                         >
-                            <ChevronIcon className="fill-inherit p-[1px]" />
+                            <ChevronIcon className="tw-fill-inherit tw-p-[1px]" />
                         </button>
                         <button
                             type="button"
                             title="Clear"
                             disabled={signatureData === 0 && value !== ''}
                             className={classNames(
-                                'active:fill-blue-600 active:bg-grey-400/50 hover:bg-gray-300/50 p-1 rounded z-20 bg-white',
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white',
                                 signatureData === 0 &&
-                                    'fill-gray-300  disabled:bg-transparent disabled:text-gray-300 active:fill-gray-300 active:bg-transparent active:text-gray-300'
+                                    'tw-fill-gray-300  disabled:tw-bg-transparent disabled:tw-text-gray-300 active:tw-fill-gray-300 active:tw-bg-transparent active:tw-text-gray-300'
                             )}
                             onClick={() => {
                                 handleClear();
                                 handleDisable(false);
                             }}
                         >
-                            <TrashIcon className="fill-inherit" />
+                            <TrashIcon className="tw-fill-inherit" />
                         </button>
                         <button
                             type="button"
                             title="Stop Editing"
                             className={classNames(
-                                'active:fill-blue-600 active:bg-grey-400/50 hover:bg-gray-300/50 p-1 rounded z-20 bg-white'
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white'
                             )}
                             onClick={() => {
                                 handleDisable(true);
                             }}
                         >
-                            <CloseIcon className="fill-inherit" />
+                            <CloseIcon className="tw-fill-inherit" />
                         </button>
                     </>
                 )}
             </div>
-            <div className="border-t border-[1px] border-blue-400 border-dashed h-0 absolute w-full mx-auto bottom-1/4 inset-x-0"></div>
+            <div className="tw-border-t tw-border-[1px] tw-border-blue-400 tw-border-dashed tw-h-0 tw-absolute tw-w-full tw-mx-auto tw-bottom-1/4 tw-inset-x-0"></div>
             <canvas
-                className="aspect-[5/2] w-full border border-gray-500 min-h-40 relative z-10"
+                className="tw-aspect-[5/2] tw-w-full tw-border tw-border-gray-500 tw-min-h-40 tw-relative tw-z-10"
                 ref={signatureRef}
             />
         </div>
@@ -543,7 +543,7 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
     const [oldWidth, setOldWidth] = React.useState(null);
     const [oldHeight, setOldHeight] = React.useState(null);
     return (
-        <div id={id} className="flex m-auto">
+        <div id={id} className="tw-flex tw-m-auto">
             {/* <Dialog.Root open={expanded}>
         <Dialog.Portal >
           <Dialog.Overlay className='fixed inset-0 z-40 flex bg-black/20' />
@@ -578,7 +578,7 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root> */}
-            <div className="w-auto">
+            <div className="tw-w-auto">
                 <SignatureCanvas
                     ref={normalSignatureCanvasRef}
                     expanded={expanded}

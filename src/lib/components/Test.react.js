@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Test({id, setProps}) {
     return (
-        <span className="bg-red-500" id={id}>
+        <span className="tw-bg-red-500" id={id}>
             Test Component
         </span>
     );
