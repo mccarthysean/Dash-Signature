@@ -49,8 +49,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -  && \
     # Install nodejs and yarn
     apt-get update && \
     apt-get install -yqqf nodejs && \
-    # Install the latest version of npm (9)
-    npm install --global npm@^9 && \
+    # Install the latest version of npm (10)
+    npm install --global npm@^10 && \
     npm install --global yarn && \
     # Clean up
     apt-get autoremove -y && \

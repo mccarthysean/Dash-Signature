@@ -27,7 +27,7 @@
           "name": "bool"
         },
         "required": false,
-        "description": "The trigger for the component to update the value.\nSetting to true will update the value.",
+        "description": "The trigger for the component to update the value.\r\nSetting to true will update the value.",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -49,7 +49,7 @@
           "name": "func"
         },
         "required": false,
-        "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
       }
     }
   },
@@ -70,7 +70,7 @@
           "name": "func"
         },
         "required": false,
-        "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
       }
     }
   }
