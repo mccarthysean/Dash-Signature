@@ -138,7 +138,6 @@ function SignatureCanvas(
     },
     ref
 ) {
-    console.log('signature canvas', {value, expanded});
     const signatureRef = React.useRef(null);
     const signaturePadRef = React.useRef(null);
     // Expose the following methods to the parent component.
@@ -228,14 +227,12 @@ function SignatureCanvas(
 
                 // Scale the drawing context to match the canvas size
                 const data = newValue ?? signaturePadRef.current.toData();
-                console.log({data});
                 const ctx = canvas.getContext('2d');
                 ctx.scale(ratio, ratio);
                 setOldHeight(canvas.height);
                 setOldWidth(canvas.width);
                 signaturePadRef.current.clear();
                 if (data && Array.isArray(data)) {
-                    console.log('scaling as array');
                     const scaleX = canvas.width / oldWidth;
                     const scaleY = canvas.height / oldHeight;
 
@@ -248,11 +245,9 @@ function SignatureCanvas(
                         return group;
                     });
                     signaturePadRef.current.fromData(scaledData);
-                    console.log({scaledData});
                     setSignatureData(scaledData.length);
                     setSignatureValue(scaledData);
                 } else {
-                    console.log('scaling as string');
                     if (isValidImageDataUri(value)) {
                         signaturePadRef.current.fromDataURL(value); //.then(() => {
                     }
@@ -263,10 +258,8 @@ function SignatureCanvas(
     );
     const strokeEndEvent = React.useCallback(() => {
         if (ref.current) {
-            console.log('stroke end event');
             setSignatureData(signaturePadRef.current.toData().length ?? 0);
             const data = signaturePadRef.current.toData();
-            console.log({data});
             setSignatureValue(data);
             setRedos([]);
             handleSave()
@@ -276,7 +269,6 @@ function SignatureCanvas(
     React.useEffect(() => {
         if (!disabled && signaturePadRef.current) {
             resizeCanvas();
-            console.log('size change');
         }
         // resizeCanvas()
     }, [size, disabled]);
@@ -287,30 +279,12 @@ function SignatureCanvas(
         });
         // window.addEventListener('resize', resizeCanvas);
         signaturePadRef.current.addEventListener('endStroke', strokeEndEvent);
-        console.log('use effect on signature mount');
-        console.log(value);
         if (isValidImageDataUri(value)) {
             resizeCanvas(value);
         } else {
             resizeCanvas(value);
         }
-        console.log('done resize effect');
-        // Initial resize and scale
-        // Load the signature data if it exists
-        // if (value.length > 0 && signaturePadRef.current) {
-        //   signaturePadRef.current.clear()
-        //   signaturePadRef.current.fromDataURL(value).then(() => {
-        //     const data = signaturePadRef.current.toData()
-        //     signaturePadRef.current.fromData(scaleData(data))
-        //   }).catch((e) => {
-        //     console.error('something2 went wrong', e)
-        //   })
-        // } else {
-        //   signaturePadRef.current.clear()
-        // }
-        // Cleanup function to remove the event listener
         return () => {
-            // window.removeEventListener('resize', resizeCanvas);
             signaturePadRef.current.removeEventListener(
                 'endStroke',
                 strokeEndEvent
@@ -326,15 +300,6 @@ function SignatureCanvas(
     }, [disabled]);
     return (
         <div className="tw-flex tw-flex-col tw-relative tw-aspect-[5/2]">
-            {/* <button type='button' title='Maximize' className={classNames('active:fill-blue-600 active:bg-grey-400/50 hover:bg-gray-300/50 absolute flex top-0 p-1 rounded z-20 bg-white right-0 m-2')}
-        onClick={
-          () => {
-            setExpanded(!expanded)
-          }
-
-        }>
-        <ArrowSquareIcon className={classNames('fill-inherit transition', expanded && 'rotate-180')} />
-      </button> */}
             <div className="tw-absolute tw-z-20 tw-flex tw-bottom-0 tw-right-0 tw-p-1 tw-justify-end tw-gap-2">
                 {disabled ? (
                     <button
@@ -399,6 +364,10 @@ function SignatureCanvas(
                             )}
                             onClick={() => {
                                 handleDisable(true);
+                                if(signaturePadRef.current) {
+                                    const data = signaturePadRef.toData()
+
+                                }
                             }}
                         >
                             <CloseIcon className="tw-fill-inherit" />
@@ -417,7 +386,7 @@ function SignatureCanvas(
 
 SignatureCanvas = React.forwardRef(SignatureCanvas);
 
-function Signature({id, value = '', save = false, resize = false, setProps}) {
+function Signature({id, value = '', setProps}) {
     const signatureCanvasRef = React.useRef(null);
     const expandedSignatureCanvasRef = React.useRef(null);
     const normalSignatureCanvasRef = React.useRef(null);
@@ -429,12 +398,10 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
         if (signatureCanvasRef.current) {
             setProps({
                 value: signatureCanvasRef.current.toDataURL('image/svg+xml'),
-                save: false,
             });
         }
     }, [expanded]);
     const handleReset = React.useCallback(() => {
-        console.log({resetValue: value});
         setSignatureValue(value);
         handleDisable(true);
         if (signatureCanvasRef.current) {
@@ -445,21 +412,30 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
     const handleUndo = React.useCallback(() => {
         if (signatureCanvasRef.current) {
             const undo = signatureCanvasRef.current.toData();
-            console.log({beforeUndo: undo});
             if (undo.length === 0) {
                 handleReset();
+                setProps({
+                    value: value,
+                });
                 return;
             }
             const redo = undo.pop();
-            console.log({afterUndo: undo});
             setRedos((prev) => [
                 ...prev,
                 {...redo, height: oldHeight, width: oldWidth},
             ]);
             signatureCanvasRef.current.fromData(undo);
             setSignatureData(undo.length);
-            const undoData = signatureCanvasRef.current.toData();
             setSignatureValue(undo);
+            if(undo.length === 0){
+            setProps({
+                value: '',
+            });
+            } else {
+              setProps({
+                  value: signatureCanvasRef.current.toDataURL('image/svg+xml'),
+              });
+            }
         }
     }, [expanded]);
     const handleRedo = React.useCallback(() => {
@@ -477,6 +453,9 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
             signatureCanvasRef.current.fromData(data);
             setSignatureData(data.length);
             setSignatureValue(data);
+            setProps({
+                value: signatureCanvasRef.current.toDataURL('image/svg+xml'),
+            });
         }
     }, [expanded, redos]);
     const handleClear = React.useCallback(() => {
@@ -485,43 +464,48 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
             setSignatureData(0);
             setSignatureValue([]);
             setRedos([]);
+            setProps({value: ''});
         }
     }, [expanded]);
     const [disabled, setDisabled] = React.useState(isValidImageDataUri(value));
     const handleDisable = React.useCallback(
         (state = false) => {
-            console.log({signatureCanvasRef});
             if (signatureCanvasRef.current && state === true) {
                 signatureCanvasRef.current.off();
-                console.log('here');
                 setDisabled(state);
+                const data = signatureCanvasRef.current.toData();
+                if (data.length === 0){
+                    setProps({
+                        value: '',
+                    });
+                } else {
+                    setProps({
+                        value: signatureCanvasRef.current.toDataURL('image/svg+xml'),
+                    });
+                }
             } else if (signatureCanvasRef.current && state === false) {
                 signatureCanvasRef.current.on();
-                console.log('here');
                 setDisabled(state);
+                const data = signatureCanvasRef.current.toData();
+                if (data.length === 0){
+                    setProps({
+                        value: '',
+                    });
+                }else {
+                  setProps({
+                      value: signatureCanvasRef.current.toDataURL('image/svg+xml'),
+                  });
+                }
             }
         },
         [expanded]
     );
-    //effect to trigger save of value
-    React.useEffect(() => {
-        if (save) {
-            handleSave();
-        }
-    });
     //effect to trigger a clear of canvas
     React.useEffect(() => {
         if (value === '') {
             handleClear();
         }
     }, [value]);
-    //effect to trigger a resize of the canvas on btn click
-    React.useEffect(() => {
-        if (resize) {
-            signatureCanvasRef.current.resizeCanvas();
-            setProps({resize: false});
-        }
-    });
     //effect to sync the expanded / normal canvas refs when expanded
     React.useEffect(() => {
         signatureCanvasRef.current = expanded
@@ -547,40 +531,6 @@ function Signature({id, value = '', save = false, resize = false, setProps}) {
     const [oldHeight, setOldHeight] = React.useState(null);
     return (
         <div id={id} className="tw-flex tw-m-auto">
-            {/* <Dialog.Root open={expanded}>
-        <Dialog.Portal >
-          <Dialog.Overlay className='fixed inset-0 z-40 flex bg-black/20' />
-          <Dialog.Content className='bg-white md:rounded-lg md:p-3 z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full md:w-[90vw] max-h-[85vh]'>
-            <VisuallyHidden.Root asChild>
-              <Dialog.Title className='flex justify-between items-center'>Signature</Dialog.Title>
-            </VisuallyHidden.Root>
-            <VisuallyHidden.Root asChild>
-              <Dialog.Description>Signature Pad</Dialog.Description>
-            </VisuallyHidden.Root>
-            <SignatureCanvas
-              ref={expandedSignatureCanvasRef}
-              expanded={expanded}
-              disabled={disabled}
-              setExpanded={setExpanded}
-              isExpanded={expanded}
-              signatureData={signatureData}
-              setSignatureData={setSignatureData}
-              setSignatureValue={setSignatureValue}
-              setRedos={setRedos}
-              redos={redos}
-              value={signatureValue}
-              handleUndo={handleUndo}
-              handleRedo={handleRedo}
-              handleClear={handleClear}
-              handleDisable={handleDisable}
-              oldHeight={oldHeight}
-              oldWidth={oldWidth}
-              setOldHeight={setOldHeight}
-              setOldWidth={setOldWidth}
-            />
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root> */}
             <div className="tw-w-auto">
                 <SignatureCanvas
                     ref={normalSignatureCanvasRef}
@@ -622,13 +572,6 @@ Signature.propTypes = {
      * The value displayed in the input.
      */
     value: PropTypes.string,
-
-    /**
-     * The trigger for the component to update the value.
-     * Setting to true will update the value.
-     */
-    save: PropTypes.bool,
-    resize: PropTypes.bool,
 
     /**
      * Dash-assigned callback that should be called to report property changes
