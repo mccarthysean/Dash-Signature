@@ -161,7 +161,7 @@ function SignatureCanvas(
             // get the context of the signature canvas
             getContext: (ctx) => signatureRef.current.getContext(ctx),
             // this function must be called in the parent component on render to resize the canvas
-            resizeCanvas: () => resizeCanvas(),
+            resizeCanvas: (value) => resizeCanvas(value),
 
             // getter for the reference to the signature pad js class object
             get signaturePad() {
@@ -248,8 +248,8 @@ function SignatureCanvas(
                     setSignatureData(scaledData.length);
                     setSignatureValue(scaledData);
                 } else {
-                    if (isValidImageDataUri(value)) {
-                        signaturePadRef.current.fromDataURL(value); //.then(() => {
+                    if (isValidImageDataUri(newValue)) {
+                        signaturePadRef.current.fromDataURL(newValue); //.then(() => {
                     }
                 }
             }
@@ -386,12 +386,12 @@ function SignatureCanvas(
 
 SignatureCanvas = React.forwardRef(SignatureCanvas);
 
-function Signature({id, value = '', setProps}) {
+function Signature({id, value = '', defaultValue = '', setProps}) {
     const signatureCanvasRef = React.useRef(null);
     const expandedSignatureCanvasRef = React.useRef(null);
     const normalSignatureCanvasRef = React.useRef(null);
     const [signatureData, setSignatureData] = React.useState(0);
-    const [signatureValue, setSignatureValue] = React.useState(value);
+    const [signatureValue, setSignatureValue] = React.useState(defaultValue);
     const [expanded, setExpanded] = React.useState(false);
     const [redos, setRedos] = React.useState([]);
     const handleSave = React.useCallback(() => {
@@ -402,21 +402,22 @@ function Signature({id, value = '', setProps}) {
         }
     }, [expanded]);
     const handleReset = React.useCallback(() => {
-        setSignatureValue(value);
+        setSignatureValue(defaultValue);
         handleDisable(true);
         if (signatureCanvasRef.current) {
             signatureCanvasRef.current.clear();
-            signatureCanvasRef.current.fromDataURL(value);
+            signatureCanvasRef.current.fromDataURL(defaultValue);
         }
-    }, [expanded]);
+    }, [expanded, defaultValue]);
     const handleUndo = React.useCallback(() => {
         if (signatureCanvasRef.current) {
             const undo = signatureCanvasRef.current.toData();
             if (undo.length === 0) {
                 handleReset();
                 setProps({
-                    value: value,
+                    value: defaultValue,
                 });
+                setSignatureValue(defaultValue)
                 return;
             }
             const redo = undo.pop();
@@ -427,17 +428,11 @@ function Signature({id, value = '', setProps}) {
             signatureCanvasRef.current.fromData(undo);
             setSignatureData(undo.length);
             setSignatureValue(undo);
-            if(undo.length === 0){
             setProps({
-                value: '',
-            });
-            } else {
-              setProps({
                   value: signatureCanvasRef.current.toDataURL('image/svg+xml'),
-              });
-            }
+            });
         }
-    }, [expanded]);
+    }, [expanded, defaultValue]);
     const handleRedo = React.useCallback(() => {
         if (signatureCanvasRef.current && redos?.length > 0) {
             const data = signatureCanvasRef.current.toData();
@@ -527,6 +522,13 @@ function Signature({id, value = '', setProps}) {
             document.removeEventListener('keydown', escapeEvent);
         };
     }, []);
+    React.useEffect(() => {
+      setSignatureValue(defaultValue)
+      handleReset()
+      setProps({
+          value: defaultValue,
+      });
+    },[defaultValue])
     const [oldWidth, setOldWidth] = React.useState(null);
     const [oldHeight, setOldHeight] = React.useState(null);
     return (
@@ -573,6 +575,10 @@ Signature.propTypes = {
      */
     value: PropTypes.string,
 
+    /**
+     * The default value of the input. Usually a value from the database or an empty string.
+     */
+    defaultValue: PropTypes.string,
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.

@@ -22,6 +22,17 @@
           "computed": false
         }
       },
+      "defaultValue": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The default value of the input. Usually a value from the database or an empty string.",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
+      },
       "setProps": {
         "type": {
           "name": "func"
