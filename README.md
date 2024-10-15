@@ -2,12 +2,12 @@
 
 cd into this folder
 create the python virtual environment
-install depenedencies with pip install -r requirements.txt
-install wheel with pip install wheel
-install node dependencies with npm install
-build the css with npm run css
-build the node package with npm run build
-build the python package with python setup.py sdist bdist_wheel
+install depenedencies with `pip install -r requirements.txt`
+install wheel with `pip install wheel`
+install node dependencies with `yarn install`
+build the css with `yarn run css`
+build the node package with `yarn run build`
+build the python package with `python setup.py sdist bdist_wheel`
 update the dependencies of myijack in pyproject.toml to have this:
 dash_signature = { path = "/workspace/dash_signature", develop = true }
 
@@ -41,7 +41,7 @@ Clone this code and open it in a Development container in VS Code, which will in
     ```
 3. Build the Dash custom component
     ```
-    $ npm run build
+    $ yarn run build
     ```
 
 ### Write your component code in `src/lib/components/Signature.react.js`.
@@ -50,7 +50,7 @@ Clone this code and open it in a Development container in VS Code, which will in
 - Test your code in a Python environment:
     1. Build your code
         ```
-        $ npm run build
+        $ yarn run build
         ```
     2. Run and modify the `usage.py` sample dash app:
         ```
@@ -69,7 +69,7 @@ Clone this code and open it in a Development container in VS Code, which will in
 
 1. Build your code:
     ```
-    $ npm run build
+    $ yarn run build
     ```
 2. Create a Python distribution
     ```
@@ -81,7 +81,7 @@ Clone this code and open it in a Development container in VS Code, which will in
 
 3. Test your tarball by copying it into a new environment and installing it locally:
     ```
-    $ pip install dash_signature-0.1.1.tar.gz
+    $ pip install dash_signature-0.1.4.tar.gz
     ```
 
 4. If it works, then you can publish the component to NPM and PyPI:

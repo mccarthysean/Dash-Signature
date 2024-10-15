@@ -25,13 +25,12 @@ export $(cat ../.env | sed 's/#.*//g' | xargs)
 check_var "$PYPI_TOKEN_PROD" "PYPI_TOKEN_PROD"
 
 # First build the files to be uploaded
-poetry build
+bash ./poetry_build_package.sh
 
 # Publish to the production repository
 # https://python-poetry.org/docs/libraries/
 # https://python-poetry.org/docs/cli/#publish
 # poetry config pypi-token.pypi $PYPI_TOKEN_PROD
-# poetry publish --build 
+# poetry publish --build
 # poetry publish --build --username $PYPI_USERNAME_PROD --password $PYPI_PASSWORD_PROD
 poetry publish --username __token__ --password $PYPI_TOKEN_PROD
-

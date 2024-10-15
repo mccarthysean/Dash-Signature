@@ -56,8 +56,8 @@ module.exports = (env, argv) => {
         devtool,
         devServer: {
             static: {
-                directory: path.join(__dirname, '/')
-            }
+                directory: path.join(__dirname, '/'),
+            },
         },
         externals,
         module: {
@@ -78,6 +78,19 @@ module.exports = (env, argv) => {
                         {
                             loader: 'css-loader',
                         },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: {
+                                    plugins: [
+                                        require('tailwindcss')(
+                                            './tailwind.config.js'
+                                        ),
+                                        require('autoprefixer'),
+                                    ],
+                                },
+                            },
+                        },
                     ],
                 },
             ],
@@ -91,23 +104,23 @@ module.exports = (env, argv) => {
                         minSize: 0,
                         name(module, chunks, cacheGroupKey) {
                             return `${cacheGroupKey}-${chunks[0].name}`;
-                        }
+                        },
                     },
                     shared: {
                         chunks: 'all',
                         minSize: 0,
                         minChunks: 2,
-                        name: 'dash_signature-shared'
-                    }
-                }
-            }
+                        name: 'dash_signature-shared',
+                    },
+                },
+            },
         },
         plugins: [
             new WebpackDashDynamicImport(),
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
-                exclude: ['async-plotlyjs']
-            })
-        ]
-    }
+                exclude: ['async-plotlyjs'],
+            }),
+        ],
+    };
 };
