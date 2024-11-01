@@ -364,10 +364,6 @@ function SignatureCanvas(
                             )}
                             onClick={() => {
                                 handleDisable(true);
-                                if(signaturePadRef.current) {
-                                    const data = signaturePadRef.toData()
-
-                                }
                             }}
                         >
                             <CloseIcon className="tw-fill-inherit" />
@@ -406,7 +402,9 @@ function Signature({id, value = '', defaultValue = '', setProps}) {
         handleDisable(true);
         if (signatureCanvasRef.current) {
             signatureCanvasRef.current.clear();
+            if (isValidImageDataUri(defaultValue)) {
             signatureCanvasRef.current.fromDataURL(defaultValue);
+          }
         }
     }, [expanded, defaultValue]);
     const handleUndo = React.useCallback(() => {

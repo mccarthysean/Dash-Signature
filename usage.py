@@ -24,7 +24,7 @@ app.layout = html.Div(
         html.Div(
             id="output",
             style={
-                "overflow-wrap": "anywhere",
+                "overflowWrap": "anywhere",
                 "backgroundColor": "lightgrey",
                 "width": "1000px",
             },
