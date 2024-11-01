@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Dash-Signature"
-version = "0.1.5"
+version = "0.1.6"
 description = "Signature element for Dash sites in Python"
 authors = ["Coulton Fraser <cjrfraser@gmail.com>"]
 license = "MIT"

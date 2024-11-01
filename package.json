@@ -1,6 +1,11 @@
 {
   "name": "dash_signature",
   "version": "0.1.6",
+  "author": {
+    "name": "Coulton Fraser",
+    "email": "cjrfraser@gmail.com"
+  },
+  "license": "MIT",
   "description": "Dash signature component for signing documents",
   "main": "build/index.js",
   "scripts": {
