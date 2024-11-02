@@ -6,6 +6,7 @@ set -e
 cd "$(dirname "$0")"
 echo "Current working directory: $(pwd)"
 
+rm -rf dist/*
 npm run build
 
 exit 0
