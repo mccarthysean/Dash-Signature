@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SignaturePad from 'signature_pad';
 // output.css is the tailwind css file that is generated from the tailwind.config.js
@@ -7,8 +6,6 @@ import SignaturePad from 'signature_pad';
 // Some classes conflict with the existing bootstrap classes. To avoid conflicts, the conflicting classes should be renamed.
 // Conflicting classes in this file are currently just `border` which is instead used as `border-[1px]` to avoid conflicts.
 import '../css/output.css';
-import {ArrowSquareIcon} from '../fragments/ArrowSquareIcon.react';
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import {CloseIcon} from '../fragments/CloseIcon.react';
 import {classNames} from '../utils/classNames';
 import {ChevronIcon} from '../fragments/ChevronIcon.react';
@@ -306,7 +303,7 @@ function SignatureCanvas(
                         type="button"
                         title="Edit"
                         className={classNames(
-                            'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white'
+                            'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-border-none tw-bg-transparent'
                         )}
                         onClick={() => handleDisable(false)}
                     >
@@ -319,7 +316,7 @@ function SignatureCanvas(
                             title="Undo"
                             // disabled={redos.length === 0 || typeof value === 'string'}
                             className={classNames(
-                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white'
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-border-none tw-bg-transparent'
                             )}
                             onClick={() => handleUndo()}
                         >
@@ -329,7 +326,7 @@ function SignatureCanvas(
                             type="button"
                             title="Redo"
                             className={classNames(
-                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white',
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-border-none tw-bg-transparent',
                                 redos.length === 0 &&
                                     'tw-fill-gray-300  disabled:tw-bg-transparent disabled:tw-text-gray-300 active:tw-fill-gray-300 active:tw-bg-transparent active:tw-text-gray-300'
                             )}
@@ -345,7 +342,7 @@ function SignatureCanvas(
                             title="Clear"
                             disabled={signatureData === 0 && value !== ''}
                             className={classNames(
-                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white',
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-border-none tw-bg-transparent',
                                 signatureData === 0 &&
                                     'tw-fill-gray-300  disabled:tw-bg-transparent disabled:tw-text-gray-300 active:tw-fill-gray-300 active:tw-bg-transparent active:tw-text-gray-300'
                             )}
@@ -360,7 +357,7 @@ function SignatureCanvas(
                             type="button"
                             title="Stop Editing"
                             className={classNames(
-                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-bg-white'
+                                'active:tw-fill-blue-600 active:tw-bg-grey-400/50 hover:tw-bg-gray-300/50 tw-p-1 tw-rounded tw-z-20 tw-border-none tw-bg-transparent'
                             )}
                             onClick={() => {
                                 handleDisable(true);
