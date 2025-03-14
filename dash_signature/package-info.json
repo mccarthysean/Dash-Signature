@@ -1,13 +1,12 @@
 {
   "name": "dash_signature",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": {
     "name": "Coulton Fraser",
     "email": "cjrfraser@gmail.com"
   },
   "license": "MIT",
   "description": "Dash signature component for signing documents",
->>>>>>> main
   "main": "build/index.js",
   "scripts": {
     "css": "NODE_ENV=production npx tailwindcss -i ./src/lib/css/input.css -o ./src/lib/css/output.css",
