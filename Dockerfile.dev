@@ -64,28 +64,28 @@ COPY .bashrc /root/
 # RUN pip install build
 # RUN python -m build --sdist dash_signature -o dash_signature/dist
 
-COPY pyproject.toml poetry.lock ./
+# COPY pyproject.toml poetry.lock ./
 COPY . .
-# RUN \
-#     # in-project .venv makes it very slow since it's sharing files with Windows/WSL...
-#     # poetry config virtualenvs.in-project true
-#     # These settings get put into the ~/.config./pyconfig/config.toml file
-#     # poetry add /workspace/dash_signature && \
-#     # poetry lock && \
-#     poetry config virtualenvs.create false && \
-#     # poetry config repositories.ijack_private https://pypi.myijack.com && \
-#     # The following username/password setup doesn't seem to work for some reason...
-#     # poetry config http-basic.ijack_private $PYPI_USERNAME_PRIVATE $PYPI_PASSWORD_PRIVATE
-#     echo "Running poetry install..." && \
-#     # poetry add --dev gateway-setup
-#     # echo ""
-#     poetry install --no-interaction --no-ansi
+RUN \
+    # in-project .venv makes it very slow since it's sharing files with Windows/WSL...
+    # poetry config virtualenvs.in-project true
+    # These settings get put into the ~/.config./pyconfig/config.toml file
+    # poetry add /workspace/dash_signature && \
+    # poetry lock && \
+    poetry config virtualenvs.create false && \
+    # poetry config repositories.ijack_private https://pypi.myijack.com && \
+    # The following username/password setup doesn't seem to work for some reason...
+    # poetry config http-basic.ijack_private $PYPI_USERNAME_PRIVATE $PYPI_PASSWORD_PRIVATE
+    echo "Running poetry install..." && \
+    # poetry add --dev gateway-setup
+    # echo ""
+    poetry install --no-interaction --no-ansi
 
-# # COPY package.json package-lock.json ./
-# COPY package.json yarn.lock ./
-# RUN \
-#     echo "Running yarn install..." && \
-#     yarn install
+# COPY package.json package-lock.json ./
+COPY package.json yarn.lock ./
+RUN \
+    echo "Running yarn install..." && \
+    yarn install
 
 ENV HOST 0.0.0.0
 
