@@ -1,6 +1,6 @@
 Package: Dash-Signature
 Title: None
-Version: 0.1.6
+Version: 0.1.7
 Description: None
 Depends: R (>= 3.0.2)
 Imports: 

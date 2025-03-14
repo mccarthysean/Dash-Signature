@@ -3,7 +3,7 @@ module DashSignature
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.1.6"
+const version = "0.1.7"
 
 include("jl/signature.jl")
 
