@@ -3,7 +3,7 @@ services:
   signature_dev:
     build:
       # context: where should docker compose look for the Dockerfile?
-      context: ..
+      context: .
       dockerfile: Dockerfile.dev
       args:
         secret=id: secret_envs,src=.env
@@ -16,6 +16,6 @@ services:
       COMPOSE_DOCKER_CLI_BUILD: 1
       BUILDKIT_INLINE_CACHE: 1
     volumes:
-      - ..:/workspace:cached
+      - .:/workspace:cached
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
