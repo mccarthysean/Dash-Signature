@@ -11,6 +11,10 @@
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
   // This way if you click "Reopen in container", it knows which workspace to use.
   "workspaceFolder": "/workspace",
+  "initializeCommand": "mkdir -p ${localEnv:HOME}/.claude-docker 2>/dev/null || true",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.claude-docker,target=/root/.claude,type=bind"
+  ],
   "customizations": {
     "vscode": {
       "settings": {
